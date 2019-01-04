@@ -46,6 +46,13 @@ const pickOptions = argv => {
     cwd = Path.join(process.cwd(), cwd);
   }
 
+  // source of options priority
+  // 1. User specified CLI options
+  // 2. User specified ENV options
+  // 3. User RC files
+  // 4. CLI defaults
+  // 5. defaults
+
   const rc = (argv.opts.rcfile && loadRc(cwd)) || defaultRc;
 
   nixClap.applyConfig(rc, argv);
