@@ -5,6 +5,7 @@ const Path = require("path");
 const mkdirp = require("mkdirp");
 const rimraf = require("rimraf");
 const xclap = require("xclap");
+const _ = require("lodash");
 
 require("electrode-archetype-njs-module-dev")();
 
@@ -26,7 +27,7 @@ xclap.load("fyn", {
       const data = readPkg();
       const pkg = JSON.parse(data);
       delete pkg.scripts;
-      delete pkg.dependencies;
+      pkg.dependencies = _.pick(pkg.dependencies, "node-gyp");
       delete pkg.nyc;
       delete pkg.devDependencies;
       rimraf.sync(dist);

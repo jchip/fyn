@@ -6,7 +6,7 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPl
 
 const base = {
   mode: "development",
-  //devtool: "source-map",
+  // devtool: "source-map",
   entry: {
     "fyn.js": Path.resolve("cli/fyn.js")
   },
@@ -48,7 +48,7 @@ const node6 = Object.assign({}, base, {
         use: {
           loader: "babel-loader",
           options: {
-            presets: [["@babel/env", { targets: { node: "6" } }]]
+            presets: [["@babel/env", { targets: { node: "4" } }]]
           }
         }
       }
@@ -78,4 +78,4 @@ const node8 = Object.assign({}, base, {
   }
 });
 
-module.exports = [node8, node6];
+module.exports = [node8, node6, require("./webpack.node-gyp.js")];
